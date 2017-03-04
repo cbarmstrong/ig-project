@@ -10,12 +10,14 @@
 
 function setFTSE(){
     date = $("#datepicker").datepicker("getDate");
-    if(date){
+    if(date != null){
+        console.log("Date Picked: "+date);
         getFTSE(date);
     }
 }
 
 function populate(){
+    $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd", defaultDate: new Date() });
     setFTSE();
 }
 

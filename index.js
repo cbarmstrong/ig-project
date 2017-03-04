@@ -189,7 +189,7 @@ module.exports = function (app){
     });
 
     app.get("/index/all/:date",function(req,res){
-        request.get("http://localhost//index/make_list/"+req.params.date, function(err,resp,body){
+        request.get("http://localhost:54321/index/make_list/"+req.params.date, function(err,resp,body){
             res.type("json");
             res.end(JSON.stringify(index.ftse));
         })
