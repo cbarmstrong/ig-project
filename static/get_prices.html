@@ -21,38 +21,29 @@ function populate(){
     setFTSE();
 }
 
-function epicSearch(stock){
-    $.ajax({url: "/index/epic_search/"+stock, success: function(result){
-        setTimeout(updateEpics,1000,stock);
+function getPrices(epic,stock){
+    $.ajax({ url: "/storedPrices/"+epic, success: function(result){
+        if(result && result.length>0){
+            id_text = stock.replace(/[ &\(\)']/g,"_");
+            cnt=result.length;
+            start=new Date(Date.parse(result[0].date));
+            end=new Date(Date.parse(result[result.length-1].date));
+            $("#"+id_text+"_text").html("<B>"+stock+"</B> "+cnt+" prices from "+start.toLocaleDateString()+" to "+end.toLocaleDateString());
+        }
     }});
-}
-
-function removeEpics(stock){
-    $.ajax({url: "/index/epics/"+stock, success: function(result){
-        setTimeout(updateEpics,1000,stock);
-    }, method: "DELETE" });
-}
-
-function epicActivate(epic,stock){
-    $.ajax({url: "/update/index/"+stock+"/"+epic, success: function(result){
-        setTimeout(updateEpics,1000,stock);
-    }, method: "PUT"});
 }
 
 function updateEpics(stock){
     $.ajax({url: "/index/epics/"+stock, success: function(result){
         id_text = stock.replace(/[ &\(\)']/g,"_");
-        es="";
+        epic="";
+        desc="";
         for(i=0;i<result.epics.length;i++){
-            if(result.epics[i].live == true){ es+="<FONT COLOR='Red'><B>"; }
-            es+="<BR><SPAN onClick='epicActivate(\""+result.epics[i].epic+"\",\""+stock+"\")'>"+result.epics[i].epic+" ("+result.epics[i].description+")</SPAN>";
-            if(result.epics[i].live == true){ es+="</B></FONT>"; }
+            epic=result.epics[i].epic;
+            desc=result.epics[i].description;
         }
-        console.log(stock+": "+es);
-        if(es!=""){ es="<SPAN onClick='removeEpics(\""+stock+"\")'>Remove</SPAN><BR>"+es; }
-        else{ es="<SPAN onClick='epicSearch(\""+stock+"\")'>Search</SPAN>"; }
-        console.log(stock+": "+es);
-        $("#"+id_text+"_epics").html(es+"<BR>");
+        $("#"+id_text+"_epics").html("<BR><SPAN>"+epic+" ("+desc+")</SPAN>");
+        getPrices(epic,stock);
     }});
 }
 
@@ -64,7 +55,7 @@ function getFTSE(date){
             stock = keys[i];
             id_text = stock.replace(/[ &\(\)']/g,"_");
             if(result[stock]==0){ page += "<I>"; }
-            page += "<BR><SPAN CLASS='stock_text'><B>"+stock+"</B></SPAN>: <SPAN ID='"+id_text+"_epics'></SPAN>"
+            page += "<BR><SPAN ID='"+id_text+"_text'><B>"+stock+"</B></SPAN>: <SPAN ID='"+id_text+"_epics'></SPAN>"
             if(result[stock]==0){ page += "</I>"; }
         }
         $("#IndexList").html(page);

@@ -23,6 +23,15 @@ module.exports = function (app){
          res.end(JSON.stringify({}));
     });
 
+    app.get('/storedPrices/:epic', function(req,res){
+        ohlc.find({ epic: req.params.epic }).sort({ date: 1 }).exec(function(err,docs){
+            res.type('json');
+            if(err){ res.end(JSON.stringify(err));return; }
+            if(docs && docs.length>0){ res.end(JSON.stringify(docs,null,4));return; }
+            res.end(JSON.stringify({},null,4));
+        });
+    });
+
     app.delete('/pullPrices/:epic/:resolution', function(req,res){
         res.type('json');
         ohlc.find({ epic: req.params.epic, resolution: req.params.resolution }).remove().exec(function(){ res.end("{}") });
