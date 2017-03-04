@@ -1,0 +1,738 @@
+FTSE PUBLICATIONS
+
+FTSE 100
+
+19 November 2016
+
+Indicative Index Weight Data as at Closing on 30 September 2016
+Constituent
+3i Group
+
+Index weight
+(%)
+
+0.35
+
+Admiral Group
+
+0.23
+
+Anglo American
+
+0.71
+
+Antofagasta
+
+0.1
+
+Ashtead Group
+
+0.36
+
+Associated British Foods
+
+0.51
+
+AstraZeneca
+
+3.55
+
+Aviva
+
+1
+
+Babcock International Group
+
+0.29
+
+BAE Systems
+
+0.93
+
+Barclays
+
+1.6
+
+Barratt Developments
+
+0.28
+
+BHP Billiton
+
+1.38
+
+BP
+
+4.75
+
+British American Tobacco
+
+5.17
+
+British Land Co
+
+0.36
+
+BT Group
+
+1.83
+
+Bunzl
+
+0.43
+
+Burberry Group
+
+0.34
+
+Capita
+
+0.25
+
+Carnival
+
+0.39
+
+Centrica
+
+0.7
+
+Coca-Cola HBC AG
+
+0.2
+
+Compass Group
+
+1.39
+
+CRH
+
+1.2
+
+DCC
+
+0.35
+
+Diageo
+
+3.13
+
+Direct Line Insurance Group
+
+0.28
+
+Dixons Carphone
+
+0.21
+
+Easyjet
+
+0.14
+
+Experian
+
+0.83
+
+Fresnillo
+
+0.17
+
+GKN
+
+0.31
+
+GlaxoSmithKline
+
+4.49
+
+Glencore
+
+1.39
+
+Source: FTSE Group
+
+Country
+
+Constituent
+
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+
+Hammerson
+
+Index weight
+(%)
+
+0.26
+
+Hargreaves Lansdown
+
+0.17
+
+Hikma Pharmaceuticals
+
+0.16
+
+HSBC Hldgs
+
+6.45
+
+Imperial Brands
+
+2.15
+
+Informa
+
+0.26
+
+InterContinental Hotels Group
+
+0.35
+
+International Consolidated Airlines
+Group
+Intertek Group
+
+0.38
+
+Intu Properties
+
+0.16
+
+ITV
+
+0.39
+
+Johnson Matthey
+
+0.36
+
+Kingfisher
+
+0.48
+
+Land Securities Group
+
+0.47
+
+Legal & General Group
+
+0.73
+
+Lloyds Banking Group
+
+1.96
+
+0.32
+
+London Stock Exchange Group
+
+0.5
+
+Marks & Spencer Group
+
+0.3
+
+Mediclinic International plc
+
+0.2
+
+Merlin Entertainments
+
+0.18
+
+Micro Focus International
+
+0.27
+
+Mondi
+
+0.34
+
+Morrison (Wm) Supermarkets
+
+0.27
+
+National Grid
+
+2.32
+
+Next
+
+0.38
+
+Old Mutual
+
+0.56
+
+Paddy Power Betfair
+
+0.4
+
+Pearson
+
+0.35
+
+Persimmon
+
+0.31
+
+Polymetal International
+
+0.14
+
+Provident Financial
+
+0.25
+
+Prudential
+
+1.98
+
+Randgold Resources
+
+0.41
+
+Reckitt Benckiser Group
+
+2.57
+
+RELX
+
+0.9
+
+Country
+
+Constituent
+
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+
+Rio Tinto
+
+Index weight
+(%)
+
+1.75
+
+Rolls-Royce Holdings
+
+0.67
+
+Royal Bank Of Scotland Group
+
+0.33
+
+Royal Dutch Shell A
+
+4.66
+
+Royal Dutch Shell B
+
+4.21
+
+Royal Mail
+
+0.25
+
+RSA Insurance Group
+
+0.31
+
+SABMiller
+
+2.42
+
+Sage Group
+
+0.45
+
+Sainsbury (J)
+
+0.23
+
+Schroders
+
+0.17
+
+Severn Trent
+
+0.33
+
+Shire
+
+2.53
+
+Sky
+
+0.53
+
+Smith & Nephew
+
+0.63
+
+Smiths Group
+
+0.32
+
+SSE
+
+0.89
+
+St. James's Place
+
+0.28
+
+Standard Chartered
+
+0.95
+
+Standard Life
+
+0.38
+
+Taylor Wimpey
+
+0.28
+
+Tesco
+
+0.84
+
+Travis Perkins
+
+0.22
+
+TUI AG
+
+0.29
+
+Unilever
+
+2.48
+
+United Utilities Group
+
+0.38
+
+Vodafone Group
+
+3.31
+
+Whitbread
+
+0.4
+
+Wolseley
+
+0.62
+
+Worldpay Group
+
+0.28
+
+WPP
+
+1.32
+
+Country
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+UNITED
+KINGDOM
+
+1 of 2
+
+19 November 2016
+
+Data Explanation
+Weights
+Weights data is indicative, as values have been rounded up or down to two
+decimal points. Where very small values are concerned, which would display as
+0.00 using this rounding method, these weights are shown as <0.005.
+ICB Supersector Code and Supersector Descriptions
+Information on the Industrial Classification Benchmark (ICB) is available from
+www.icbenchmark.com.
+Timing of data
+Constituents & Weights spreadsheets are generally published in arrears and
+contain the data as at the most recent review data. However, some spreadsheets
+are updated on a more frequent basis. Please refer to the data date that is shown
+in the spreadsheet. Please see the index rules on www.ftse.com for further
+information on review schedules or contact info@ftse.com.
+
+19 November 2016
+
+© 2016 London Stock Exchange Group companies.
+London Stock Exchange Group companies includes FTSE International Limited (“FTSE”),
+Frank Russell Company (“Russell”), MTS Next Limited (“MTS”), and FTSE TMX Global Debt
+Capital Markets Inc (“FTSE TMX”). All rights reserved.
+“FTSE®”, “Russell®”, “MTS®”, “FTSE TMX®” and “FTSE Russell” and other service marks
+and trademarks related to the FTSE or Russell indexes are trade marks of the London Stock
+Exchange Group companies and are used by FTSE, MTS, FTSE TMX and Russell under
+licence.
+All information is provided for information purposes only. Every effort is made to ensure that all
+information given in this publication is accurate, but no responsibility or liability can be accepted
+by the London Stock Exchange Group companies nor its licensors for any errors or for any loss
+from use of this publication.
+Neither the London Stock Exchange Group companies nor any of their licensors make any
+claim, prediction, warranty or representation whatsoever, expressly or impliedly, either as to
+the results to be obtained from the use of the FTSE Monthly Markets Brief or the fitness or
+suitability of the FTSE Monthly Markets Brief for any particular purpose to which it might be put.
+The London Stock Exchange Group companies do not provide investment advice and nothing
+in this document should be taken as constituting financial or investment advice. The London
+Stock Exchange Group companies make no representation regarding the advisability of
+investing in any asset. A decision to invest in any such asset should not be made in reliance on
+any information herein. Indexes cannot be invested in directly. Inclusion of an asset in an index
+is not a recommendation to buy, sell or hold that asset. The general information contained in
+this publication should not be acted upon without obtaining specific legal, tax, and investment
+
+Data definitions available from www.ftserussell.com
+
+advice from a licensed professional.
+
+To learn more, visit www.ftserussell.com;
+
+No part of this information may be reproduced, stored in a retrieval system or transmitted in
+
+email index@russell.com, info@ftse.com;
+
+any form or by any means, electronic, mechanical, photocopying, recording or otherwise,
+
+or call your regional Client Services Team office:
+
+without prior written permission of the London Stock Exchange Group companies. Distribution
+of the London Stock Exchange Group companies’ index values and the use of their indexes to
+
+EMEA
+
+create financial products require a licence with FTSE, FTSE TMX, MTS and/or Russell and/or
+
++44 (0) 20 7866 1810
+
+its licensors.
+The Industry Classification Benchmark (“ICB”) is owned by FTSE. FTSE does not accept any
+liability to any person for any loss or damage arising out of any error or omission in the ICB.
+Past performance is no guarantee of future results. Charts and graphs are provided for
+illustrative purposes only. Index returns shown may not represent the results of the actual
+
+North America
++1 877 503 6437
+
+trading of investable assets. Certain returns shown may reflect back-tested performance. All
+
+Asia-Pacific
+
+performance presented prior to the index inception date is back-tested performance. Back-
+
+Hong Kong +852 2164 3333
+
+tested performance is not actual performance, but is hypothetical. The back-test calculations
+
+Tokyo +81 3 3581 2764
+
+are based on the same methodology that was in effect when the index was officially launched.
+
+Sydney +61 (0) 2 8823 3521
+
+However, back- tested data may reflect the application of the index methodology with the
+benefit of hindsight, and the historic calculations of an index may change from month to month
+based on revisions to the underlying economic data used in the calculation of the index.
+Source: FTSE Group
+
+2 of 2
+
+

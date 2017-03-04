@@ -1,0 +1,16 @@
+<HTML ng-app="epicChooser">
+<HEAD>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<SCRIPT src="/js/epicChooser.js"></SCRIPT>
+</HEAD>
+<BODY>
+<H1>Index</H1>
+<UL>
+<LI ng-repeat="constituent in ftseList.constituents">
+    {{constituent.name}}
+</LI>
+</UL>
+</BODY>
+</HTML>
+
+
