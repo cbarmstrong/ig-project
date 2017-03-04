@@ -25,7 +25,7 @@ module.exports = function (app){
 
     app.delete('/pullPrices/:epic/:resolution', function(req,res){
         res.type('json');
-        epic.find({ epic: req.params.epic, resolution: req.params.resolution }).remove().exec(function(){ res.end("{}") });
+        ohlc.find({ epic: req.params.epic, resolution: req.params.resolution }).remove().exec(function(){ res.end("{}") });
     });
 
     app.get('/pullPrices/:epic/:resolution/:start/:end', function(req,res){
@@ -35,11 +35,12 @@ module.exports = function (app){
 	// END   = yyyy-mm-ddThh:mm:ss
         startTime=new Date(Date.parse(req.params.start)).getTime()
         endTime=new Date(Date.parse(req.params.end)).getTime()
-        ohlc.find({ epic: req.params.epic, date: { $gt: startTime, $lt: endTime }, resolution: req.params.resolution}, function(err,docs){
+        ohlc.find({ epic: req.params.epic, date: { $gte: startTime, $lte: endTime }, resolution: req.params.resolution}).sort({ date: 1}).exec(function(err,docs){
             res.type('json');
             if(err){ res.end(JSON.stringify(err));return; }
-            if(docs && docs.length>0){ res.end(JSON.stringify(docs));return; }
+            if(docs && docs.length>0){ res.end(JSON.stringify(docs,null,4));return; }
             console.log("No data found, searching IG... ");
+            console.log(req.params.epic+'?resolution='+req.params.resolution+'&from='+req.params.start+'&to='+req.params.end+'&pageSize=0');
 	    ig.prices(req.params.epic+'?resolution='+req.params.resolution+'&from='+req.params.start+'&to='+req.params.end+'&pageSize=0', function(err,data){
                 if(err){ console.error("ERROR: "+err); }
                 else{
@@ -50,8 +51,32 @@ module.exports = function (app){
                     } else if(data.code == "ECONNRESET"){
                         res.end(JSON.stringify(data,null,4));
                     } else{
+                        currentDay=startTime;
                         for(i=0;i<data.prices.length;i++){
                             t=data.prices[i];
+                            ohlcDay=new Date(Date.parse(t.snapshotTimeUTC)).getTime();
+                            console.log("---------------------------------");
+                            console.log("Current ig data point : "+ohlcDay);
+                            console.log("Current expected day  : "+currentDay);
+                            console.log("---------------------------------");
+                            console.log();
+                            while(currentDay<ohlcDay){
+                                price=new ohlc({ openBid: 0,
+                                                 highBid: 0,
+                                                 lowBid: 0,
+                                                 closeBid: 0,
+                                                 openAsk: 0,
+                                                 highAsk: 0,
+                                                 lowAsk: 0,
+                                                 closeAsk: 0,
+                                                 volume: 0,
+                                                 date: currentDay,
+                                                 resolution: req.params.resolution,
+                                                 epic: req.params.epic });
+                                price.save();
+                                currentDay+=24*60*60*1000;
+                                console.log("Current expected day  : "+currentDay);
+                            }
                             price=new ohlc({ openBid: t.openPrice.bid, 
                                              highBid: t.highPrice.bid, 
                                              lowBid: t.lowPrice.bid, 
@@ -61,10 +86,11 @@ module.exports = function (app){
                                              lowAsk: t.lowPrice.ask, 
                                              closeAsk: t.closePrice.ask, 
                                              volume: t.lastTradedVolume, 
-                                             date: new Date(Date.parse(t.snapshotTimeUTC)), 
+                                             date: ohlcDay, 
                                              resolution: req.params.resolution,
                                              epic: req.params.epic });
                             price.save();
+                            currentDay+=24*60*60*1000;
                             console.log(JSON.stringify(t,null,4));
                         }
                         res.end(JSON.stringify({ result: "saved" }));
