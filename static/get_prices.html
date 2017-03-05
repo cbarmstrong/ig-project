@@ -44,7 +44,7 @@ function updateEpics(stock){
                 desc=result.epics[i].description;
             }
         }
-        $("#"+id_text+"_epics").html("<BR><SPAN>"+epic+" ("+desc+")</SPAN>");
+        $("#"+id_text+"_epics").html("<BR><SPAN><A HREF='/pullPrices/"+epic+"/DAY/2016-01-01/2016-12-31'>"+epic+"</A> ("+desc+")</SPAN>");
         getPrices(epic,stock);
     }});
 }
