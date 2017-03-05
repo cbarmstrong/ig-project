@@ -2065,7 +2065,7 @@ Whitbread
 
 19-Dec-05
 
-Kazakhmys
+KAZ Minerals
 
 William Hill
 
@@ -2308,7 +2308,7 @@ Tate & Lyle
 
 24-Dec-07
 
-TUI Travel
+TUI AG
 
 Daily Mail & General Trust
 
@@ -2344,8 +2344,7 @@ Kelda Group
 
 26-Mar-08
 
-Eurasian Natural Resources
-Corporation
+Eurasia Mining
 
 Taylor Wimpey
 
@@ -2614,7 +2613,7 @@ Invensys
 
 Tate & Lyle
 
-TUI Travel
+TUI AG
 
 19-Sep-11
 
@@ -2690,7 +2689,7 @@ Ashmore Group
 
 24-Dec-12
 
-TUI Travel
+TUI AG
 
 Pennon Group
 
@@ -2704,7 +2703,7 @@ Intu Properties
 
 London Stock Exchange Group
 
-Kazakhmys
+KAZ Minerals
 
 24-Jun-13
 
@@ -2728,8 +2727,7 @@ Wood Group (John)
 
 Sports Direct International
 
-Eurasian Natural Resources
-Corporation
+Eurasia Mining
 
 23-Sep-13
 
@@ -2789,7 +2787,7 @@ Rexam
 
 TUI AG
 
-TUI Travel
+TUI AG
 
 22-Dec-14
 
@@ -2902,7 +2900,7 @@ Fast Entry
 Corporate Event - Acquisition of International
 Power by GDF Suez S.A.
 
-Corporate Event - Acquisition of TUI Travel by TUI
+Corporate Event - Acquisition of TUI AG by TUI
 AG
 
 Corporate Event - Acquisition of Friends Life

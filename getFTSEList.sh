@@ -13,3 +13,8 @@ grep -v "Constituent" FTSE100.list.2 | grep -v "Source: "  > FTSE100.list.1 && r
 base=$( grep -n Explanation FTSE100.list.1 | head -1 | cut -d: -f1 )
 head -$( expr $base - 3 ) FTSE100.list.1 | sort > FTSE100.list && rm FTSE100.list.1
 sed -i "s/Worldpay Group/Worldpay Limited/g" FTSE100.list
+sed -i "s/TUI Travel/TUI AG/g" FTSE100.list
+sed -i "s/HSBC Hldgs/HSBC Holdings/g" FTSE100.list
+sed -i "s/Eurasian Natural Resources Corporation/Eurasia Mining/g" FTSE100.list
+sed -i "s/Kazakhmys/KAZ Minerals/g" FTSE100.list
+
