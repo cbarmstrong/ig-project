@@ -195,5 +195,18 @@ module.exports = function (app){
         })
     });
 
+    app.get("/index/metric/:date/:metric", function(req,res){
+        request.get("http://localhost:54321/index/all/"+req.params.date, function(err,resp,body){
+            res.type("json");
+            result={};
+            f_c=Object.keys(index.ftse);
+            for(i=0;i<f_c.length;i++){
+                if(index.ftse[f_c[i]]==1){
+                    
+                }
+            }
+        });
+    });
+
     return index;
 }
