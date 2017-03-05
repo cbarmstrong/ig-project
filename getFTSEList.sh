@@ -12,3 +12,4 @@ tail -$( expr $length - $top ) FTSE100.list.3 > FTSE100.list.2 && rm FTSE100.lis
 grep -v "Constituent" FTSE100.list.2 | grep -v "Source: "  > FTSE100.list.1 && rm FTSE100.list.2
 base=$( grep -n Explanation FTSE100.list.1 | head -1 | cut -d: -f1 )
 head -$( expr $base - 3 ) FTSE100.list.1 | sort > FTSE100.list && rm FTSE100.list.1
+sed -i "s/Worldpay Group/Worldpay Limited/g" FTSE100.list

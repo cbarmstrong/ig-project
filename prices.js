@@ -69,17 +69,22 @@ module.exports = function (app){
             console.log("No data found, searching IG... ");
             console.log(req.params.epic+'?resolution='+req.params.resolution+'&from='+req.params.start+'&to='+req.params.end+'&pageSize=0');
 	    igPrices(req.params.epic+'?resolution='+req.params.resolution+'&from='+req.params.start+'&to='+req.params.end+'&pageSize=0', function(err,data){
-                if(err){ console.error("ERROR: "+err); }
+                if(err){ console.error("ERROR: "+err);return; }
                 else{
                     console.log("IG Data: ");
                     if(!data){ 
                         console.log('No data returned');
                         res.end(JSON.stringify([]));
+                        return;
                     } else if(data.code == "ECONNRESET"){
                         res.end(JSON.stringify(data,null,4));
+                        return;
+                    } else if(data.errorCode){
+                        res.end(JSON.stringify(data,null,4));
+                        return;
                     } else{
                         currentDay=startTime;
-                        if(!data.prices){ console.log(JSON.stringify(data,null,4)); }
+                        if(!data.prices){ console.log(JSON.stringify(data,null,4));return; }
                         for(i=0;i<data.prices.length;i++){
                             t=data.prices[i];
                             ohlcDay=new Date(Date.parse(t.snapshotTimeUTC)).getTime();
