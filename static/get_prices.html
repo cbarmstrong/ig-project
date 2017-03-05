@@ -39,8 +39,10 @@ function updateEpics(stock){
         epic="";
         desc="";
         for(i=0;i<result.epics.length;i++){
-            epic=result.epics[i].epic;
-            desc=result.epics[i].description;
+            if(result.epics[i].live){
+                epic=result.epics[i].epic;
+                desc=result.epics[i].description;
+            }
         }
         $("#"+id_text+"_epics").html("<BR><SPAN>"+epic+" ("+desc+")</SPAN>");
         getPrices(epic,stock);

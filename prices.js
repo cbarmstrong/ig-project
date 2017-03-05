@@ -10,13 +10,22 @@ module.exports = function (app){
 
     var ohlc = mongoose.model('ohlc', { openBid: Number, highBid: Number, lowBid: Number, closeBid: Number, openAsk: Number, highAsk: Number, lowAsk: Number, closeAsk: Number, volume: Number, date: Date, name: String, epic: String, resolution: String });
 
+    function igfindMarkets(req,res){
+        try{
+            ig.findMarkets(req.params.query, function(err,data){
+                if(err){ res.end(JSON.stringify({ error: err })); }
+                else{
+                    res.end(JSON.stringify(data,null,4));
+                }
+            });
+        } catch(e){
+            console.log("Exception while searching for market"+JSON.stringify(req,null,4));
+            setTimeout(igfindMarkets,5000,req,res);
+        }
+    }
+
     app.get('/markets/search/:query', function(req,res){
-        ig.findMarkets(req.params.query, function(err,data){
-	    if(err){ res.end(JSON.stringify({ error: err })); }
-	    else{
-		res.end(JSON.stringify(data,null,4));
-	    }
-	});
+        igfindMarkets(req,res);
     });
 
     app.get('/prices/:epic',function(req,res){
@@ -37,6 +46,15 @@ module.exports = function (app){
         ohlc.find({ epic: req.params.epic, resolution: req.params.resolution }).remove().exec(function(){ res.end("{}") });
     });
 
+    function igPrices(search,callback){
+        try{
+            ig.prices(search,callback);
+        } catch(e) {
+            console.log("Exception while searching for market"+JSON.stringify(req,null,4));
+            setTimeout(igPrices,5000,search,callback);
+        }
+    }
+
     app.get('/pullPrices/:epic/:resolution/:start/:end', function(req,res){
 	// RESOLUTION = DAY, 4H
 	// EPIC  = Result of search
@@ -50,7 +68,7 @@ module.exports = function (app){
             if(docs && docs.length>0){ res.end(JSON.stringify(docs,null,4));return; }
             console.log("No data found, searching IG... ");
             console.log(req.params.epic+'?resolution='+req.params.resolution+'&from='+req.params.start+'&to='+req.params.end+'&pageSize=0');
-	    ig.prices(req.params.epic+'?resolution='+req.params.resolution+'&from='+req.params.start+'&to='+req.params.end+'&pageSize=0', function(err,data){
+	    igPrices(req.params.epic+'?resolution='+req.params.resolution+'&from='+req.params.start+'&to='+req.params.end+'&pageSize=0', function(err,data){
                 if(err){ console.error("ERROR: "+err); }
                 else{
                     console.log("IG Data: ");
@@ -61,6 +79,7 @@ module.exports = function (app){
                         res.end(JSON.stringify(data,null,4));
                     } else{
                         currentDay=startTime;
+                        if(!data.prices){ console.log(JSON.stringify(data,null,4)); }
                         for(i=0;i<data.prices.length;i++){
                             t=data.prices[i];
                             ohlcDay=new Date(Date.parse(t.snapshotTimeUTC)).getTime();
@@ -100,9 +119,9 @@ module.exports = function (app){
                                              epic: req.params.epic });
                             price.save();
                             currentDay+=24*60*60*1000;
-                            console.log(JSON.stringify(t,null,4));
                         }
-                        res.end(JSON.stringify({ result: "saved" }));
+                        console.log(JSON.stringify(data.metadata.allowance,null,4));
+                        res.end(JSON.stringify({ result: "saved", allowance: data.metadata.allowance }));
                     }
                 }
             });
