@@ -8,14 +8,13 @@ module.exports = function (app){
 
     var index = {};
     index.ftse = {};
-    var ftse_array = [];
 
     var epic = mongoose.model('epic', { stock: String, epic: String, live: Boolean, description: String });
     var span = mongoose.model('span', { stock: String, date: Date, type: String });
   
     app.delete("/index/do_history",function(req,res){
         res.type("json");
-        span.find({}).remove().exec(res.end(JSON.stringify({})));;
+        span.find({}).remove().exec(res.end(JSON.stringify({})));
     });
 
     app.get("/index/do_history",function(req,res){
@@ -39,8 +38,8 @@ module.exports = function (app){
                     } else{
                         n_dt=new Date(Date.parse(data[k]));
                         if(n_dt.toString()=="Invalid Date" && segment < 5){ 
-                            if(segment == 2){ add+=" "+data[k] };
-                            if(segment == 3){ del+=" "+data[k] };
+                            if(segment == 2){ add+=" "+data[k]; }
+                            if(segment == 3){ del+=" "+data[k]; }
                         } else { 
                             //i=k; 
                             add=add.trim();
@@ -52,7 +51,7 @@ module.exports = function (app){
                                 if(err){ return; }
                                 console.log("Added: "+JSON.stringify(item));
                             });
-                            query = { type: 'del', stock: del, date: dt.getTime() }
+                            query = { type: 'del', stock: del, date: dt.getTime() };
                             span.findOneAndUpdate(query, query, opts, function(err,item){
                                 if(err){ return; }
                                 console.log("Added: "+JSON.stringify(item));
@@ -202,7 +201,10 @@ module.exports = function (app){
             f_c=Object.keys(index.ftse);
             for(i=0;i<f_c.length;i++){
                 if(index.ftse[f_c[i]]==1){
-                    
+                	result[f_c[i]]={};
+                    if(req.params.metric == "close"){
+                    	result[f_c[i]]['close']
+                    }
                 }
             }
         });
