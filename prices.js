@@ -1,5 +1,4 @@
 var IG = require('ig-markets')
-var ig = new IG('4e990639434fb720bed7f12a7efcc897ed549438','colinarmstrongbet','V1rus932');
 mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
