@@ -1,5 +1,6 @@
 var fs = require('fs');
 var request = require('request');
+var config = require("./config.json");
 mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/ftse_epics');

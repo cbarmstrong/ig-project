@@ -1,4 +1,6 @@
-var IG = require('ig-markets')
+var IG = require('ig-markets');
+var conf = require('./config.json');
+var ig = new IG(conf.ig_key,conf.ig_usr,conf.ig_pwd);
 mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
@@ -49,7 +51,8 @@ module.exports = function (app){
         try{
             ig.prices(search,callback);
         } catch(e) {
-            console.log("Exception while searching for market"+JSON.stringify(req,null,4));
+            console.log("Exception while searching for market"+JSON.stringify(search,null,4));
+            console.log(e);
             setTimeout(igPrices,5000,search,callback);
         }
     }
@@ -70,28 +73,31 @@ module.exports = function (app){
 	    igPrices(req.params.epic+'?resolution='+req.params.resolution+'&from='+req.params.start+'&to='+req.params.end+'&pageSize=0', function(err,data){
                 if(err){ console.error("ERROR: "+err);return; }
                 else{
-                    console.log("IG Data: ");
+                    console.log("Prices returned");
                     if(!data){ 
                         console.log('No data returned');
                         res.end(JSON.stringify([]));
                         return;
                     } else if(data.code == "ECONNRESET"){
+                        console.log("Connection Reset");
                         res.end(JSON.stringify(data,null,4));
                         return;
                     } else if(data.errorCode){
+                        console.log("Error returned");
                         res.end(JSON.stringify(data,null,4));
                         return;
                     } else{
+                        console.log("IG Data returned....");
                         currentDay=startTime;
                         if(!data.prices){ console.log(JSON.stringify(data,null,4));return; }
                         for(i=0;i<data.prices.length;i++){
                             t=data.prices[i];
                             ohlcDay=new Date(Date.parse(t.snapshotTimeUTC)).getTime();
-                            console.log("---------------------------------");
-                            console.log("Current ig data point : "+ohlcDay);
-                            console.log("Current expected day  : "+currentDay);
-                            console.log("---------------------------------");
-                            console.log();
+                            //console.log("---------------------------------");
+                            //console.log("Current ig data point : "+ohlcDay);
+                            //console.log("Current expected day  : "+currentDay);
+                            //console.log("---------------------------------");
+                            //console.log();
                             while(currentDay<ohlcDay){
                                 price=new ohlc({ openBid: 0,
                                                  highBid: 0,
@@ -107,7 +113,7 @@ module.exports = function (app){
                                                  epic: req.params.epic });
                                 price.save();
                                 currentDay+=24*60*60*1000;
-                                console.log("Current expected day  : "+currentDay);
+                                //console.log("Current expected day  : "+currentDay);
                             }
                             price=new ohlc({ openBid: t.openPrice.bid, 
                                              highBid: t.highPrice.bid, 
