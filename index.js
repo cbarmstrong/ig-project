@@ -68,37 +68,43 @@ module.exports = function (app){
 
     app.get("/index/make_list/:date",function(req,res){
         res.type("json");
-        index.ftse={};
+        index.ftse[req.params.date]=[];
         file_in=fs.readFileSync('FTSE100.list').toString();
+        ind={};
         file_in.split("\n").forEach(function(item){
             line=item.split("=");
             if(line==""){ return; }
             if(line[0]=="list_date"){
                 list_date = new Date(Date.parse(line[1]));
             } else {
-                index.ftse[line[0]]=1;
+                ind[line[0]]=1;
                 console.log("Added "+line[0]);
             }
         });
-        console.log("List generated on "+list_date.toString()+" ("+list_date.getTime()+") - "+Object.keys(index.ftse).length+" items");
-        date = new Date(Date.parse(req.params.date));
+        console.log("List generated on "+list_date.toString()+" ("+list_date.getTime()+") - "+Object.keys(ind).length+" items");
+        date = new Date();
+        date.setTime(req.params.date);
+        console.log("Date requested: "+date.toString()+" ("+req.params.date+")");
         a_r_func = function(err,docs){
-            console.log(err);
+            if(err){ console.log(err); }
             for(i=0;i<docs.length;i++){
                 stock=docs[i].stock;
                 if(list_date.getTime()>docs[i].date.getTime()){
-                    if(docs[i].type == "add"){ index.ftse[stock]=0; }
-                    if(docs[i].type == "del"){ index.ftse[stock]=1; }
-                    console.log("Processing un"+docs[i].type+": "+docs[i].stock+" ("+index.ftse[stock]+")");
+                    if(docs[i].type == "add"){ ind[stock]=0; }
+                    if(docs[i].type == "del"){ ind[stock]=1; }
+                    console.log("Processing un"+docs[i].type+": "+docs[i].stock+" ("+ind[stock]+")");
                 } else{
-                    if(docs[i].type == "del"){ index.ftse[stock]=0; }
-                    if(docs[i].type == "add"){ index.ftse[stock]=1; }
-                    console.log("Processing "+docs[i].type+": "+docs[i].stock+" ("+index.ftse[stock]+")");
+                    if(docs[i].type == "del"){ ind[stock]=0; }
+                    if(docs[i].type == "add"){ ind[stock]=1; }
+                    console.log("Processing "+docs[i].type+": "+docs[i].stock+" ("+ind[stock]+")");
                 }
             }
-            res.end(JSON.stringify(index.ftse));
+            stocks=Object.keys(ind).sort();
+            for(i=0;i<stocks.length;i++){
+                if(ind[stocks[i]]==1){ index.ftse[req.params.date].push(stocks[i]); }
+            }
+            res.end(JSON.stringify(index.ftse[req.params.date]));
         }
-        console.log(date.toString());
         if(date.getTime()>list_date.getTime()){
             span.find({ date: { $lt: date.getTime(), $gt: list_date.getTime() }}).sort({ date: 1 }).exec(a_r_func);
         } else{

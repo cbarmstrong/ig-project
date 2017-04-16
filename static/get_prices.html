@@ -11,8 +11,9 @@
 function setFTSE(){
     date = $("#datepicker").datepicker("getDate");
     if(date != null){
-        console.log("Date Picked: "+date);
-        getFTSE(date);
+        date_s=new Date(Date.parse(date)).getTime();
+        console.log("Date Picked: "+date_s);
+        getFTSE(date_s);
     }
 }
 
@@ -51,18 +52,16 @@ function updateEpics(stock){
 
 function getFTSE(date){
     $.ajax({url: "/index/all/"+date, success: function(result){ 
-        page = ""
-        keys = Object.keys(result);
-        for(i=0;i<keys.length;i++){
-            stock = keys[i];
+        page = "";
+        console.log(result[date].length);
+        for(i=0;i<result[date].length;i++){
+            stock = result[date][i];
             id_text = stock.replace(/[ &\(\)']/g,"_");
-            if(result[stock]==0){ page += "<I>"; }
             page += "<BR><SPAN ID='"+id_text+"_text'><B>"+stock+"</B></SPAN>: <SPAN ID='"+id_text+"_epics'></SPAN>"
-            if(result[stock]==0){ page += "</I>"; }
         }
         $("#IndexList").html(page);
-        for(i=0;i<keys.length;i++){
-            stock = keys[i];
+        for(i=0;i<result[date].length;i++){
+            stock = result[date][i];
             updateEpics(stock);
         }
     }});

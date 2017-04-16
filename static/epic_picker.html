@@ -11,8 +11,9 @@
 function setFTSE(){
     date = $("#datepicker").datepicker("getDate");
     if(date != null){
-        console.log("Date Picked: "+date);
-        getFTSE(date);
+        date_s=new Date(Date.parse(date)).getTime();
+        console.log("Date Picked: "+date_s);
+        getFTSE(date_s);
     }
 }
 
@@ -59,7 +60,7 @@ function updateEpics(stock){
 function getFTSE(date){
     $.ajax({url: "/index/all/"+date, success: function(result){ 
         page = ""
-        keys = Object.keys(result);
+        keys = result[date];
         for(i=0;i<keys.length;i++){
             stock = keys[i];
             id_text = stock.replace(/[ &\(\)']/g,"_");
