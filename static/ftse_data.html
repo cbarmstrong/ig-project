@@ -12,7 +12,10 @@ function setFTSE(){
     start_date = $("#start").datepicker("getDate");
     end_date = $("#end").datepicker("getDate");
     if(start_date && end_date){
-        getFTSE();
+        st_s=new Date(Date.parse(start_date)).getTime();
+        en_s=new Date(Date.parse(end_date)).getTime();
+        console.log("Getting data from "+st_s+" to "+en_s);
+        getFTSE(st_s,en_s,st_s);
     }
 }
 
@@ -22,29 +25,30 @@ function populate(){
     setFTSE();
 }
 
-function getFTSE(date){
-    $.ajax({url: "/index/all/"+date, success: function(result){ 
-        page = ""
-        keys = Object.keys(result);
-        for(i=0;i<keys.length;i++){
-            stock = keys[i];
-            id_text = stock.replace(/[ &\(\)']/g,"_");
-            if(result[stock]==0){ page += "<I>"; }
-            page += "<BR><SPAN CLASS='stock_text'><B>"+stock+"</B></SPAN>: <SPAN ID='"+id_text+"_epics'></SPAN>"
-            if(result[stock]==0){ page += "</I>"; }
-        }
-        $("#IndexList").html(page);
-        for(i=0;i<keys.length;i++){
-            stock = keys[i];
-            updateEpics(stock);
-        }
-    }});
+
+function getFTSE(sd,ed,osd){
+    console.log("getFTSE called with "+sd+" "+ed);
+    pct=100*(sd-osd)/(ed-osd);
+    $("#FTSETable").html("Loading....("+pct+"%)");
+    if(sd<=ed){
+        $.ajax({url: "/index/all/"+sd+"/"+ed, success: function(result){ 
+            if(result && result.length>0){
+                ftse[sd]=result;
+                getFTSE(sd+1000*60*60*24,ed,osd);
+            }
+        }});
+    } else{
+        $("#FTSETable").html(ftse);
+    }
 }
+
+var ftse={};
 
 $(document).ready(populate);
 
 </SCRIPT>
 
-<p>Start Date: <input type="text" id="start"></p>
-<p>End Date: <input type="text" id="end"></p>
+<p>Start Date: <input type="text" id="start" onChange="setFTSE();"></p>
+<p>End Date: <input type="text" id="end" onChange="setFTSE();"></p>
+<SPAN ID="FTSETable"></SPAN>
 

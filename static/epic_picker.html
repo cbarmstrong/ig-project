@@ -60,7 +60,7 @@ function updateEpics(stock){
 function getFTSE(date){
     $.ajax({url: "/index/all/"+date, success: function(result){ 
         page = ""
-        keys = result[date];
+        keys = result;
         for(i=0;i<keys.length;i++){
             stock = keys[i];
             id_text = stock.replace(/[ &\(\)']/g,"_");

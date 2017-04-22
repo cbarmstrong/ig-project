@@ -68,47 +68,53 @@ module.exports = function (app){
 
     app.get("/index/make_list/:date",function(req,res){
         res.type("json");
-        index.ftse[req.params.date]=[];
-        file_in=fs.readFileSync('FTSE100.list').toString();
-        ind={};
-        file_in.split("\n").forEach(function(item){
-            line=item.split("=");
-            if(line==""){ return; }
-            if(line[0]=="list_date"){
-                list_date = new Date(Date.parse(line[1]));
-            } else {
-                ind[line[0]]=1;
-                console.log("Added "+line[0]);
-            }
-        });
-        console.log("List generated on "+list_date.toString()+" ("+list_date.getTime()+") - "+Object.keys(ind).length+" items");
-        date = new Date();
-        date.setTime(req.params.date);
-        console.log("Date requested: "+date.toString()+" ("+req.params.date+")");
-        a_r_func = function(err,docs){
-            if(err){ console.log(err); }
-            for(i=0;i<docs.length;i++){
-                stock=docs[i].stock;
-                if(list_date.getTime()>docs[i].date.getTime()){
-                    if(docs[i].type == "add"){ ind[stock]=0; }
-                    if(docs[i].type == "del"){ ind[stock]=1; }
-                    console.log("Processing un"+docs[i].type+": "+docs[i].stock+" ("+ind[stock]+")");
-                } else{
-                    if(docs[i].type == "del"){ ind[stock]=0; }
-                    if(docs[i].type == "add"){ ind[stock]=1; }
-                    console.log("Processing "+docs[i].type+": "+docs[i].stock+" ("+ind[stock]+")");
-                }
-            }
-            stocks=Object.keys(ind).sort();
-            for(i=0;i<stocks.length;i++){
-                if(ind[stocks[i]]==1){ index.ftse[req.params.date].push(stocks[i]); }
-            }
+        if(index.ftse[req.params.date] && index.ftse[req.params.date].length>0){
+            console.log("Cached Index returned");
             res.end(JSON.stringify(index.ftse[req.params.date]));
-        }
-        if(date.getTime()>list_date.getTime()){
-            span.find({ date: { $lt: date.getTime(), $gt: list_date.getTime() }}).sort({ date: 1 }).exec(a_r_func);
         } else{
-            span.find({ date: { $lt: list_date.getTime(), $gt: date.getTime() }}).sort({ date: -1 }).exec(a_r_func);
+            index.ftse[req.params.date]=[];
+            file_in=fs.readFileSync('FTSE100.list').toString();
+            ind={};
+            file_in.split("\n").forEach(function(item){
+                line=item.split("=");
+                if(line==""){ return; }
+                if(line[0]=="list_date"){
+                    list_date = new Date(Date.parse(line[1]));
+                } else {
+                    ind[line[0]]=1;
+                    console.log("Added "+line[0]);
+                }
+            });
+            console.log("List generated on "+list_date.toString()+" ("+list_date.getTime()+") - "+Object.keys(ind).length+" items");
+            date = new Date();
+            date.setTime(req.params.date);
+            console.log("Date requested: "+date.toString()+" ("+req.params.date+")");
+            a_r_func = function(err,docs){
+                if(err){ console.log(err); }
+                for(i=0;i<docs.length;i++){
+                    stock=docs[i].stock;
+                    if(list_date.getTime()>docs[i].date.getTime()){
+                        if(docs[i].type == "add"){ ind[stock]=0; }
+                        if(docs[i].type == "del"){ ind[stock]=1; }
+                        console.log("Processing un"+docs[i].type+": "+docs[i].stock+" ("+ind[stock]+")");
+                    } else{
+                        if(docs[i].type == "del"){ ind[stock]=0; }
+                        if(docs[i].type == "add"){ ind[stock]=1; }
+                        console.log("Processing "+docs[i].type+": "+docs[i].stock+" ("+ind[stock]+")");
+                    }
+                }
+                stocks=Object.keys(ind).sort();
+                for(i=0;i<stocks.length;i++){
+                    if(ind[stocks[i]]==1){ index.ftse[req.params.date].push(stocks[i]); }
+                }
+                console.log("Index: "+JSON.stringify(index.ftse,null,4));
+                res.end(JSON.stringify(index.ftse[req.params.date]));
+            }
+            if(date.getTime()>list_date.getTime()){
+                span.find({ date: { $lt: date.getTime(), $gt: list_date.getTime() }}).sort({ date: 1 }).exec(a_r_func);
+            } else{
+                span.find({ date: { $lt: list_date.getTime(), $gt: date.getTime() }}).sort({ date: -1 }).exec(a_r_func);
+            }
         }
     });
 
@@ -197,8 +203,13 @@ module.exports = function (app){
     app.get("/index/all/:date",function(req,res){
         request.get("http://localhost:54321/index/make_list/"+req.params.date, function(err,resp,body){
             res.type("json");
-            res.end(JSON.stringify(index.ftse));
+            res.end(JSON.stringify(index.ftse[req.params.date]));
         })
+    });
+
+    app.get("/index/all/:date1/:date2",function(req,res){
+        res.type("json");
+        res.end(JSON.stringify(index.ftse));
     });
 
     app.get("/index/metric/:date/:metric", function(req,res){

@@ -53,15 +53,15 @@ function updateEpics(stock){
 function getFTSE(date){
     $.ajax({url: "/index/all/"+date, success: function(result){ 
         page = "";
-        console.log(result[date].length);
-        for(i=0;i<result[date].length;i++){
-            stock = result[date][i];
+        console.log(result.length);
+        for(i=0;i<result.length;i++){
+            stock = result[i];
             id_text = stock.replace(/[ &\(\)']/g,"_");
             page += "<BR><SPAN ID='"+id_text+"_text'><B>"+stock+"</B></SPAN>: <SPAN ID='"+id_text+"_epics'></SPAN>"
         }
         $("#IndexList").html(page);
-        for(i=0;i<result[date].length;i++){
-            stock = result[date][i];
+        for(i=0;i<result.length;i++){
+            stock = result[i];
             updateEpics(stock);
         }
     }});
