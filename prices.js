@@ -87,7 +87,7 @@ module.exports = function (app){
                         res.end(JSON.stringify(data,null,4));
                         return;
                     } else{
-                        console.log("IG Data returned....");
+                        console.log("IG Data returned...."+data.prices.length+" points");
                         currentDay=startTime;
                         if(!data.prices){ console.log(JSON.stringify(data,null,4));return; }
                         for(i=0;i<data.prices.length;i++){

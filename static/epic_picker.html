@@ -42,17 +42,19 @@ function epicActivate(epic,stock){
 
 function updateEpics(stock){
     $.ajax({url: "/index/epics/"+stock, success: function(result){
-        id_text = stock.replace(/[ &\(\)']/g,"_");
+        id_text = stock.replace(/[ &\(\)'\.]/g,"_");
+        esc_text = stock.replace(/'/g,"\\'");
         es="";
         for(i=0;i<result.epics.length;i++){
             if(result.epics[i].live == true){ es+="<FONT COLOR='Red'><B>"; }
-            es+="<BR><SPAN onClick='epicActivate(\""+result.epics[i].epic+"\",\""+stock+"\")'>"+result.epics[i].epic+" ("+result.epics[i].description+")</SPAN>";
+            es+="<BR><SPAN onClick=epicActivate(\""+result.epics[i].epic+"\",\""+stock+"\")>"+result.epics[i].epic+" ("+result.epics[i].description+")</SPAN>";
             if(result.epics[i].live == true){ es+="</B></FONT>"; }
         }
         console.log(stock+": "+es);
         if(es!=""){ es="<SPAN onClick='removeEpics(\""+stock+"\")'>Remove</SPAN><BR>"+es; }
         else{ es="<SPAN onClick='epicSearch(\""+stock+"\")'>Search</SPAN>"; }
         console.log(stock+": "+es);
+        console.log("Updating "+"#"+id_text+"_epics");
         $("#"+id_text+"_epics").html(es+"<BR>");
     }});
 }
@@ -63,7 +65,7 @@ function getFTSE(date){
         keys = result;
         for(i=0;i<keys.length;i++){
             stock = keys[i];
-            id_text = stock.replace(/[ &\(\)']/g,"_");
+            id_text = stock.replace(/[ &\(\)'\.]/g,"_");
             if(result[stock]==0){ page += "<I>"; }
             page += "<BR><SPAN CLASS='stock_text'><B>"+stock+"</B></SPAN>: <SPAN ID='"+id_text+"_epics'></SPAN>"
             if(result[stock]==0){ page += "</I>"; }

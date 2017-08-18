@@ -17,4 +17,5 @@ sed -i "s/TUI Travel/TUI AG/g" FTSE100.list
 sed -i "s/HSBC Hldgs/HSBC Holdings/g" FTSE100.list
 sed -i "s/Eurasian Natural Resources Corporation/Eurasia Mining/g" FTSE100.list
 sed -i "s/Kazakhmys/KAZ Minerals/g" FTSE100.list
-
+grep -v "SAB" FTSE100.list > FTSE100.list.2
+mv FTSE100.list.2 FTSE100.list
